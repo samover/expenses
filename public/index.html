@@ -48,11 +48,10 @@
           <button> Add Transaction </button>
           <div id="transactions">
             LAST 10 TRANSACTIONS
-            <ul>
-              <li>expense 1</li>
-              <li>expense 2</li>
-              <li>expense 3</li>
-              <li>expense 4</li>
+            <ul class="list-group">
+              <li ng-repeat="expense in transCtrl.userExpenses()">
+                {{expense.note}}: {{expense.amount}}
+              </li>
             </ul>
         </article>
       </div>
