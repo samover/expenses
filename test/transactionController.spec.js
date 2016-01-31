@@ -1,14 +1,14 @@
 describe('TransactionController', function() {
-  beforeEach(module('App'));
+  var ctrl, transactions;
 
-  var ctrl;
+  beforeEach( module( 'Expenses' ));
 
-  beforeEach(inject(function($controller) {
-    ctrl = $controller('TransactionController');
+  beforeEach( inject( function( $controller ){
+    ctrl = $controller( 'TransactionController' );
   }));
 
   it('Initialises with an empty transaction and daterange', function() {
+    expect(ctrl.dateRange).toBeUndefined();
     expect(ctrl.transactions).toBeUndefined();
-    expect(ctrl.daterange).toBeUndefined();
   });
 });

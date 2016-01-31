@@ -1,1 +1,1 @@
-var app = angular.module('App', ['ngResource', 'daterangepicker']);
+var app = angular.module('Expenses', ['ngResource']);
