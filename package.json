@@ -1,0 +1,20 @@
+{
+  "name": "expensesAppAngular",
+  "version": "1.0.0",
+  "description": "This is a simple expenses app written in Angular and tested with Karma/Protractor and Jasmine. It talks to an api on heroku...",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.19",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-jasmine": "^0.3.6",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "phantomjs-prebuilt": "^2.1.3"
+  }
+}
