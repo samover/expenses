@@ -9,13 +9,14 @@ describe('Expenses App', function() {
 
   it('allows a user to log in', function() {
     var loginBox = browser.findElement(by.id('loginBox'));
-    var logoutBox = browser.findElement(by.id('logoutBox'));
+    var logoutText = browser.findElement(by.linkText('Logout Andrew'));
+
+    expect(loginBox.isDisplayed()).toBeTruthy();
 
     loginBox.sendKeys('Andrew');
     loginBox.click();
 
-    expect(loginBox.isPresent()).toBe(false);
-    expect(logoutBox.isPresent()).toBe(true);
-    expect(logoutBox.getAttribute('value')).toEqual('Logout Andrew');
+    expect(loginBox.isDisplayed()).toBeFalsy();
+    expect(logoutText.isDisplayed()).toBeTruthy();
   });
 });
