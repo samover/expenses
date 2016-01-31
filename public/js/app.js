@@ -1,1 +1,1 @@
-var app = angular.module('Expenses', ['ngResource']);
+var app = angular.module('ExpensesApp', ['ngResource']);
