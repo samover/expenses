@@ -16,6 +16,6 @@ app.controller('UserController', ['Users', function(Users) {
   }
 
   self.isAuthenticated = function() {
-    return !!self.currentUser
+    return !!self.currentUser;
   }
 }]);
