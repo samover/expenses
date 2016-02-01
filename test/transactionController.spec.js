@@ -18,7 +18,7 @@ describe('TransactionController', function() {
    var userExpenses = [ { "id": 1, "user_id": 1, }, { "id": 3, "user_id": 1, } ];
 
     it('shows the user\'s expenses', function() {
-      ctrl.currentUser = 1;
+      ctrl.currentUser.id = 1;
       ctrl.transactions = [
           { "id": 1, "user_id": 1, },
           { "id": 2, "user_id": 2, },

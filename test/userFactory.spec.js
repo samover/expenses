@@ -25,10 +25,10 @@ describe('factory: Users', function() {
   beforeEach(inject(function($httpBackend){
     httpBackend = $httpBackend;
     httpBackend
-      .when("GET", users.apiUrl)
+      .when("GET", 'http://localhost:3000/api/v1/users')
       .respond(
-          { users: userList }
-          );
+        { users: userList }
+      );
   }));
 
   afterEach(function(){
@@ -36,10 +36,22 @@ describe('factory: Users', function() {
     httpBackend.verifyNoOutstandingRequest();
   });
 
-  it('returns api response with all users', function() {
-    users.get(function(response) {
-      expect(response.users).toEqual(userList);
-    });
+  it('authenticates a user and returns that a user is authenticated', function() {
+    users.authenticate('Terry');
+    expect(users.isAuthenticated()).toBe(true);
+    httpBackend.flush();
+  });
+
+  it('unauthenticates an authenticated user', function() {
+    users.authenticate('Terry');
+    users.unauth();
+    expect(users.isAuthenticated()).toBe(false);
+    httpBackend.flush();
+  });
+
+  it('authenicates a user and returns the current user', function() {
+    users.authenticate('Terry');
+    expect(users.getCurrentUser()).toEqual(userList[0]);
     httpBackend.flush();
   });
 });
