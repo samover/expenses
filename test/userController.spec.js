@@ -16,25 +16,30 @@ describe('UserController', function() {
     expect(ctrl.currentUser).toBeUndefined();
   });
 
-  describe('Logging in', function() {
-    it('returns true when logging in with existing user', function() {
-        expect(ctrl.loginUser('Terry')).toBe(true);
+  describe('Authentication', function() {
+    it('returns true when authenticatingl with existing user', function() {
+        expect(ctrl.authenticate('Terry')).toBe(true);
     });
 
     it('returns false when the user does not exist', function() {
-      expect(ctrl.loginUser('Ellen')).toBe(false);
+      expect(ctrl.authenticate('Ellen')).toBe(false);
     });
 
     it('currentUser is an object with the user data', function() {
-      ctrl.loginUser('Terry');
+      ctrl.authenticate('Terry');
       expect(ctrl.currentUser).toEqual(ctrl.users[0]);
+    });
+
+    it('a user is authenticated upon login', function() {
+      ctrl.authenticate('Terry');
+      expect(ctrl.isAuthenticated()).toBe(true);
     });
   });
 
   describe('Logging out', function() {
     it('destroys the current user', function() {
-      ctrl.loginUser('Terry');
-      ctrl.logoutUser('Terry');
+      ctrl.authenticate('Terry');
+      ctrl.unauth('Terry');
       expect(ctrl.currentUser).toBeUndefined();
     });
   });
