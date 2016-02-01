@@ -29,40 +29,11 @@
 
   <div class="container">
     <div class="row">
-      <div class="col-xs-12 col-md-5">
-        <!-- ASIDE CONTENT -->
-        <aside>
-          <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; width: 100%">
-            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>&nbsp; <span></span> <b class="caret"></b>
-          </div> 
-          <div id="total_expenses">
-          TOTAL: 25
-          </div>
-          <div id="categories">
-            <ul>
-              <li>Car: 10</li>
-              <li>Groceries: 15</li>
-            </ul>
-          </div>
-        </aside>
-      </div>
-      <div class="col-xs-12 col-md-7">
-        <!-- ARTICLE CONTENT -->
-        <article ng-controller="TransactionController as transCtrl">
-          <button> Add Transaction </button>
-          <div id="transactions">
-            LAST 10 TRANSACTIONS
-            <ul class="list-group">
-              <li ng-repeat="expense in transCtrl.userExpenses()">
-                {{expense.note}}: {{expense.amount}}
-              </li>
-            </ul>
-        </article>
-      </div>
+      <expenses-aside></expenses-aside>
+      <expenses-article></expenses-article>
     </div>
   </div>
 
-  <footer class="navbar navbar-fixed-bottom" style="background-color: grey">
-  </footer>
+  <expenses-footer></expenses-footer>
 </body>
 </html>
