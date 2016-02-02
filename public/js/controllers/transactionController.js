@@ -1,4 +1,4 @@
-app.controller('TransactionController', ['Expenses', 'Users', 'Categories', 'daterangepicker', function(Expenses, Users, Categories, daterangepicker) { 
+app.controller('TransactionController', ['Expenses', 'Users', 'Categories', '$scope', function(Expenses, Users, Categories, $scope) { 
   var self = this;
 
   self.user = Users;
@@ -52,31 +52,31 @@ app.controller('TransactionController', ['Expenses', 'Users', 'Categories', 'dat
     } 
   }
 
-  function _filterByUserId(obj) {
-    return obj.user_id === self.userId ? true : false;
-  }
+function _filterByUserId(obj) {
+  return obj.user_id === self.userId ? true : false;
+}
 
-  function _updateUserExpenses() {
-    self.transactions = Expenses.query().$promise.then(function(res) {
-      self.userId = Users.getCurrentUser().id;
-      self.userExpenses = res.expenses.filter(_filterByUserId);
-      self.total = _expensesTotal();
-      console.log(self.total);
-    });
-  }
+function _updateUserExpenses() {
+  self.transactions = Expenses.query().$promise.then(function(res) {
+    self.userId = Users.getCurrentUser().id;
+    self.userExpenses = res.expenses.filter(_filterByUserId);
+    self.total = _expensesTotal();
+    console.log(self.total);
+  });
+}
 
-  function _expensesTotal() {
-    return total(self.userExpenses);
-  }
+function _expensesTotal() {
+  return total(self.userExpenses);
+}
 
-  function total(list) {
-    return list.map(function(obj) { return obj.amount; })
-      .reduce(function(a,b) { return a + b; });
-  }
+function total(list) {
+  return list.map(function(obj) { return obj.amount; })
+    .reduce(function(a,b) { return a + b; });
+}
 
-  function _loadCategories() {
-    Categories.query().$promise.then(function(res) {
-      self.categories = res.categories;
-    });
-  }
+function _loadCategories() {
+  Categories.query().$promise.then(function(res) {
+    self.categories = res.categories;
+  });
+}
 }]);
