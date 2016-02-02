@@ -8,7 +8,6 @@ describe('TransactionController', function() {
   }));
 
   it('Initialises with an empty transaction and daterange', function() {
-    expect(ctrl.currentUser).toBeUndefined();
     expect(ctrl.dateRange).toBeUndefined();
     expect(ctrl.transactions).toBeUndefined();
   });
@@ -18,7 +17,7 @@ describe('TransactionController', function() {
    var userExpenses = [ { "id": 1, "user_id": 1, }, { "id": 3, "user_id": 1, } ];
 
     it('shows the user\'s expenses', function() {
-      ctrl.currentUser.id = 1;
+      ctrl.userId = 1;
       ctrl.transactions = [
           { "id": 1, "user_id": 1, },
           { "id": 2, "user_id": 2, },

@@ -1,17 +1,18 @@
 app.controller('TransactionController', ['Expenses', 'Users', function(Expenses, Users) { 
   var self = this,
-      currentUser = Users.getCurrentUser(),
       transactions = Expenses.get(function(response) {
         self.transactions = response.expenses;
       });
 
+
   self.userExpenses = function() {
-    if (self.transactions !== undefined) {
-      return self.transactions.filter(filterByUserId);
+    self.userId = Users.isAuthenticated() ? Users.getCurrentUser().id : undefined;
+    if (self.transactions !== undefined && self.userId) {
+      return self.transactions.filter(_filterByUserId);
     }
   }
 
-  function filterByUserId(obj) {
-    return obj.user_id === self.currentUser.id ? true : false;
+  function _filterByUserId(obj) {
+    return obj.user_id === self.userId ? true : false;
   }
 }]);

@@ -1,11 +1,10 @@
 <div class="col-xs-12 col-md-7">
-  <!-- ARTICLE CONTENT -->
-  <article ng-controller="TransactionController as transCtrl">
+  <article ng-controller="TransactionController as trans">
     <button> Add Transaction </button>
     <div id="transactions">
       LAST 10 TRANSACTIONS
       <ul class="list-group">
-        <li ng-repeat="expense in transCtrl.userExpenses()">
+        <li ng-repeat="expense in trans.userExpenses()">
           {{expense.note}}: {{expense.amount}}
         </li>
       </ul>
