@@ -3,18 +3,18 @@
     <a class="navbar-brand" href="#"> <img alt="Brand" src="images/brand30x30.png"> </a>
     <h2 class="navbar-text">Expenses</h2>
 
-  <div class="pull-right" id="logoutBox" ng-controller="HeaderController as header"> 
-    <p class="navbar-text" ng-show="header.users.isAuthenticated()">
+  <div class="pull-right" id="logoutBox"> 
+    <p class="navbar-text" ng-show="main.user.isAuthenticated()">
         <a href class="navbar-link" 
-            ng-click="header.users.unauth()">Logout {{header.users.getCurrentUser().username}}</a> 
+            ng-click="main.unauth()">Logout {{main.user.getCurrentUser().username}}</a> 
       </p>
 
-      <form class="navbar-form" id="loginBox" role="search" ng-hide="header.users.isAuthenticated()">
+      <form class="navbar-form" id="loginBox" role="search" ng-hide="main.user.isAuthenticated()">
         <div class="form-group">
           <input type="text" class="form-control" ng-model="userName" placeholder="Username">
         </div>
         <button type="submit" class="btn btn-default"
-                ng-click="header.users.authenticate(userName)">Login</button>
+                ng-click="main.authenticate(userName)">Login</button>
       </form>
     </div>
   </div>

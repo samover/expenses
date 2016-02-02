@@ -19,11 +19,13 @@
   <script src="js/expensesDirectives.js"> </script>
   <script src="js/controllers/transactionController.js"> </script>
   <script src="js/controllers/headerController.js"> </script>
+  <script src="js/controllers/overviewController.js"> </script>
   <script src="js/factories/expensesFactory.js"> </script>
   <script src="js/factories/usersFactory.js"> </script>
+  <script src="js/factories/categoryFactory.js"> </script>
 </head>
 
-<body>
+<body ng-controller="TransactionController as main">
   <expenses-header></expenses-header>
 
   <div class="container">

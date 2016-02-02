@@ -1,10 +1,35 @@
-<div class="col-xs-12 col-md-7">
-  <article ng-controller="TransactionController as trans">
-    <button ng-click="trans.createExpense()"> Add Transaction </button>
+<div class="col-xs-12 col-md-7" >
+  <article ng-show="main.user.isAuthenticated()">
+    <h2>YOUR TRANSACTIONS</h2>
     <div id="transactions">
-      LAST 10 TRANSACTIONS
-      <div id="transaction-list" ng-repeat="expense in trans.userExpenses()">
-          {{expense.note}}: {{expense.amount}}
+      <div id="transaction-list" >
+        <table id="transaction-list">
+          <tr ng-repeat="expense in main.userExpenses">
+            <td>{{expense.created_at | date }}</td>
+            <td>{{expense.note}}</td>
+            <td>{{main.categoryName(expense.category_id)}}
+            <td>{{expense.amount}}</td>
+            <td><button ng-click="main.destroyExpense(expense.id)"></td>
+          </tr>
+        </table>
       </div>
+    </div>
+    <button ng-click="main.toggleForm()" ng-hide="main.showForm"> Add Transaction </button>
+    <form class="navbar-form" id="add-transaction" ng-show="main.showForm">
+      <div class="form-group">
+        <input type="text" class="form-control" ng-model="item.note"
+        placeholder="Description">
+        <input type="text" class="form-control" ng-model="item.amount"
+        placeholder="Amount">
+        <select ng-model="item.category_id" ng-options="item.id as item.name
+        for item in main.categories">
+              <option value="">Select Category</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-default"
+              ng-click="main.createExpense(item)">Add</button>
+      <button class="btn btn-default" ng-click="main.toggleForm()">Cancel</button>
+    </form>
+
   </article>
 </div>

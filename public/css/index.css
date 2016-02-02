@@ -5,3 +5,13 @@
 #loginBox  {
   margin-top: 20px;
 }
+
+#transactions {
+  overflow: scroll;
+  height: 400px;
+  border: 1px solid black;
+}
+
+td {
+  padding-right: 10px;
+}
