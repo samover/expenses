@@ -1,6 +1,4 @@
 app.factory('Users', ['$http', '$q', '$window', function($http, $q, $window) {
-  var currentUser;
-
   function authenticate(userName) {
     var deferred = $q.defer();
 
@@ -13,6 +11,8 @@ app.factory('Users', ['$http', '$q', '$window', function($http, $q, $window) {
         $window.sessionStorage["currentUser"] = JSON.stringify(currentUser);
         deferred.resolve(currentUser);
     }, function(error) {
+      console.log('There has bene an error');
+      console.log(error);
       deferred.reject(error);
     });
 
@@ -28,13 +28,17 @@ app.factory('Users', ['$http', '$q', '$window', function($http, $q, $window) {
   }
 
   function getCurrentUser() {
-    return JSON.parse($window.sessionStorage["currentUser"]);
+    var currentUser = $window.sessionStorage["currentUser"];
+
+    if(currentUser !== 'undefined') {
+      return JSON.parse(currentUser);
+    }
   }
 
   return {
     authenticate: authenticate,
     getCurrentUser: getCurrentUser,
     unauth: unauth,
-    isAuthenticated: isAuthenticated
+    isAuthenticated: isAuthenticated,
   }
 }]);
