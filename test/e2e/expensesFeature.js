@@ -5,19 +5,20 @@ describe('Expenses App', function() {
     browser.get('http://localhost:9292');
   });
 
+  afterEach(function () {
+    browser.executeScript('window.sessionStorage.clear();');
+  });
+
   it('has a title', function() {
     expect(browser.getTitle()).toEqual('Expenses App');
   });
 
   it('allows a user to log in', function() {
     var loginBox = browser.findElement(by.id('loginBox'));
-    var username = browser.findElement(by.model('userName'));
-    var login = browser.findElement(by.buttonText('Login'));
 
     expect(loginBox.isDisplayed()).toBeTruthy();
 
-    username.sendKeys('Miles');
-    login.click();
+    authenticate('Miles');
 
     expect(loginBox.isDisplayed()).toBeFalsy();
 
@@ -25,15 +26,25 @@ describe('Expenses App', function() {
     expect(logoutText.isDisplayed()).toBeTruthy();
   });
 
-  it('shows a user\'s expenses upon login', function() {
+  it('allows a user to log out', function() {
+    var loginBox = browser.findElement(by.id('loginBox'));
+
     authenticate('Miles');
 
     var logoutText = browser.findElement(by.linkText('Logout Miles'));
-    expect(logoutText.isDisplayed()).toBeTruthy();
-    var expenses = element.all(by.repeater("expense in transCtrl.userExpenses()"));
-    expect(expenses.length).toBeGreaterThan(0);
+    logoutText.click();
+
+    expect(loginBox.isDisplayed()).toBeTruthy();
+    expect(logoutText.isDisplayed()).toBeFalsy();
   });
-  
+
+  it('shows a user\'s expenses upon login', function() {
+    authenticate('Miles');
+
+    var expenses = element.all(by.repeater('expense in trans.expenses'));
+    expect(expenses.count()).toBeGreaterThan(0);
+  });
+
   authenticate = function(user) {
     var username = browser.findElement(by.model('userName'));
     var login = browser.findElement(by.buttonText('Login'));

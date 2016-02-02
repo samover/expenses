@@ -7,11 +7,6 @@ describe('TransactionController', function() {
     ctrl = $controller( 'TransactionController' );
   }));
 
-  it('Initialises with an empty transaction and daterange', function() {
-    expect(ctrl.dateRange).toBeUndefined();
-    expect(ctrl.transactions).toBeUndefined();
-  });
-
   describe('when user is logged in', function() {
     
    var userExpenses = [ { "id": 1, "user_id": 1, }, { "id": 3, "user_id": 1, } ];

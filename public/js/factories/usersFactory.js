@@ -11,8 +11,7 @@ app.factory('Users', ['$http', '$q', '$window', function($http, $q, $window) {
         $window.sessionStorage["currentUser"] = JSON.stringify(currentUser);
         deferred.resolve(currentUser);
     }, function(error) {
-      console.log('There has bene an error');
-      console.log(error);
+      console.log('There has been an error');
       deferred.reject(error);
     });
 
