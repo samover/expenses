@@ -1,4 +1,4 @@
-app.controller('TransactionController', ['Expenses', 'Users', 'Categories', '$scope', function(Expenses, Users, Categories, $scope) { 
+app.controller('TransactionController', ['Expenses', 'Users', 'Categories', function(Expenses, Users, Categories) { 
   var self = this;
 
   self.user = Users;

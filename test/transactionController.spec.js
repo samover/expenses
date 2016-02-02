@@ -7,18 +7,11 @@ describe('TransactionController', function() {
     ctrl = $controller( 'TransactionController' );
   }));
 
-  describe('when user is logged in', function() {
-    
-   var userExpenses = [ { "id": 1, "user_id": 1, }, { "id": 3, "user_id": 1, } ];
-
-    it('shows the user\'s expenses', function() {
-      ctrl.userId = 1;
-      ctrl.transactions = [
-          { "id": 1, "user_id": 1, },
-          { "id": 2, "user_id": 2, },
-          { "id": 3, "user_id": 1, }
-      ];
-      expect(ctrl.userExpenses()).toEqual(userExpenses);
-    });
+  describe('toggleForm', function() {
+    it('toggles the boolean value of showForm', function() {
+      ctrl.showForm = false;
+      ctrl.toggleForm();
+      expect(ctrl.showForm).toBe(true);
+    }); 
   });
 });
